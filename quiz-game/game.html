@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Kanit|Righteous|Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game.css">
+    <title></title>
+  </head>
+  <body onload="decorate(count)">
+    <h1>Pagla QUIZ</h1>
+    <div class="main">
+      <div class="fdiv">
+        <h4 id="question">Can you find me?</h4>
+        <p id="tap">Click <b>Next Hint</b> to get more hints</p>
+        <ul id="hints"></ul>
+        <button id="nextHint" onclick="showNextHint(hintcount)">Next hint</button>
+      </div>
+      <div class="sdiv">
+        <img src="" id="option1" class="options">
+        <img src="" id="option2" class="options">
+        <img src="" id="option3" class="options">
+        <p id="msg"></p>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="game.js"></script>
+  </body>
+</html>

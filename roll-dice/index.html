@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina+2&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <style media="screen">
+    *{
+      font-family: 'Baloo Bhaina 2', cursive;
+      text-align: center;
+      margin: 0 auto;
+      background-color: #cceeff;
+    }
+
+    ol{
+      display: inline-block;
+      text-align: justify;
+    }
+    li{
+      text-align: left;
+    }
+
+    .container{
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .game{
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .score{
+      border-bottom: 1px solid black;
+    }
+
+    .score-box{
+      width: 50%;
+      border: 1px solid black;
+      height: 320px;
+    }
+
+    #score-box-1 img, #score-box-2 img{
+      display: inline-flex;
+      padding: 13px 2px 0px;
+      width: 15%;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      flex-direction: row;
+    }
+
+    .buttons{
+      display: flex;
+      justify-content: space-around;
+      width: 50%;
+      margin: 10px auto;
+    }
+
+    .rollbtn {
+      color: #0A0A0A !important;
+      font-size: 25px;
+      text-shadow: 1px 1px 5px #5A525C;
+      box-shadow: 3px 2px 10px #101D30;
+      padding: 10px 20px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      border: 3px solid #3866A3;
+      background: #63B8EE;
+      background: linear-gradient(top,  #1782D4,  #C5C9E8);
+      background: -ms-linear-gradient(top,  #1782D4,  #C5C9E8);
+      background: -webkit-gradient(linear, left top, left bottom, from(#1782D4), to(#C5C9E8));
+      background: -moz-linear-gradient(top,  #1782D4,  #C5C9E8);
+    }
+
+    .hitbtn {
+      color: #0A0A0A !important;
+      font-size: 25px;
+      text-shadow: 1px 1px 5px #5A525C;
+      box-shadow: 3px 2px 10px #301612;
+      padding: 10px 20px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      border: 3px solid #A34031;
+      background: #63B8EE;
+      background: linear-gradient(top,  #FA140C,  #FF997A);
+      background: -ms-linear-gradient(top,  #FA140C,  #FF997A);
+      background: -webkit-gradient(linear, left top, left bottom, from(#FA140C), to(#FF997A));
+      background: -moz-linear-gradient(top,  #FA140C,  #FF997A);
+    }
+
+    .resetbtn {
+      color: #0A0A0A !important;
+      font-size: 25px;
+      text-shadow: 1px 1px 5px #5A525C;
+      box-shadow: 3px 2px 10px #133012;
+      padding: 10px 20px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      border: 3px solid #2C8F36;
+      background: #63B8EE;
+      background: linear-gradient(top,  #4F9917,  #96F58C);
+      background: -ms-linear-gradient(top,  #4F9917,  #96F58C);
+      background: -webkit-gradient(linear, left top, left bottom, from(#4F9917), to(#96F58C));
+      background: -moz-linear-gradient(top,  #4F9917,  #96F58C);
+    }
+
+    #result{
+      margin: 0 auto 10px;
+    }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Roll The Dice!</h1>
+      <div class="">
+        <h4 style="color:red">***Rules***</h4>
+        <ol>
+          <li>Player can roll as many times as they want</li>
+          <li>Roll at least 3 times to hit opponent</li>
+          <li>More than 18 score will bust the player</li>
+          <li>The higher scored player wins the game</li>
+        </ol>
+        <h3 style="border: 1px solid;">Let's play</h3>
+      </div>
+      <div class="game">
+        <div class="score-box">
+          <h2>Player</h2>
+          <h3 class="score">Score: <span id="playerScore">0</span></h3>
+          <div id="score-box-1">
+
+          </div>
+        </div>
+        <div class="score-box">
+          <h2>Bot</h2>
+          <h3 class="score">Score: <span id="botScore">0</span></h3>
+          <div id="score-box-2">
+
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="rollbtn" onclick="rollbtn()">Roll</button>
+        <button class="hitbtn" onclick="hitbtn()">Hit</button>
+        <button class="resetbtn" onclick="history.go(0);">Reset</button>
+      </div>
+      <h3 id="result"></h3>
+    </div>
+
+
+    <script>
+    count = 0;
+
+    function rollbtn() {
+      if (parseFloat(document.getElementById('playerScore').innerHTML) < 18) {
+        rollpl();
+        count++;
+      }
+    }
+
+    function rollpl() {
+      //generating random dice value
+      var diceNum = Math.floor(Math.random() * 6 + 1);
+
+      //inserting the found dice value image
+      var dice = document.createElement("img");
+      dice.setAttribute("src", `images/${diceNum}.png`);
+      document.getElementById('score-box-1').appendChild(dice);
+
+      //keep trace of the score
+      p_score = parseFloat(document.getElementById('playerScore').innerHTML);
+      p_score = p_score + diceNum;
+
+      if (p_score < 18) {
+        //coverting the score to new score
+        document.getElementById('playerScore').innerHTML = p_score;
+      } else {
+        document.getElementById('playerScore').innerHTML = "!BUSTED";
+        document.getElementById('playerScore').setAttribute('style', 'color:red');
+        p_score = 0;
+      }
+    }
+
+    function rollbot() {
+      if (parseFloat(document.getElementById('botScore').innerHTML) < 18) {
+        //generating random dice value
+        var diceNum = Math.floor(Math.random() * 6 + 1);
+
+          //inserting the found dice value image
+          var dice = document.createElement("img");
+          dice.setAttribute("src", `images/${diceNum}.png`);
+          document.getElementById('score-box-2').appendChild(dice);
+
+          //keep trace of the score
+          b_score = parseFloat(document.getElementById('botScore').innerHTML);
+          b_score = b_score + diceNum;
+
+          if (b_score < 18) {
+            //coverting the score to new score
+            document.getElementById('botScore').innerHTML = b_score;
+          } else {
+            document.getElementById('botScore').innerHTML = "!BUSTED";
+            document.getElementById('botScore').setAttribute('style', 'color:red');
+            b_score = 0;
+          }
+      }
+    }
+
+    function hitbtn() {
+      if (count < 3) {
+        alert("You have to roll at least 3 times");
+      } else {
+        for (var i = 0; i < count; i++) {
+          rollbot();
+        }
+        if (p_score > b_score) {
+          document.getElementById('result').innerHTML = "Player Won";
+          document.getElementById('result').className = "resetbtn";
+        } else if (p_score < b_score) {
+          document.getElementById('result').innerHTML = "Player Lost";
+          document.getElementById('result').className = "hitbtn";
+        } else {
+          document.getElementById('result').innerHTML = "Match Drawn";
+          document.getElementById('result').className = "rollbtn";
+        }
+        document.querySelector('.rollbtn').remove();
+        document.querySelector('.hitbtn').remove();
+      }
+    }
+    </script>
+  </body>
+</html>
