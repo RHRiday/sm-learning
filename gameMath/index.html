@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Game Mechanics</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <style>
+    td,th{
+      padding: 2%;
+      min-width: 50px;
+    }
+    .coc {
+      float: left;
+      width: 45%;
+    }
+
+    .jwtg {
+      float: right;
+      width: 45%;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="coc">
+    <h1>ZapQuake</h1>
+    <hr>
+    <label>Choose a building:</label>
+    <select id="defense" onchange="calc(this)">
+      <option></option>
+      <option value="1210">Air Defense lvl8</option>
+      <option value="1300">Air Defense lvl9</option>
+      <option value="1400">Air Defense lvl10</option>
+      <option value="1500">Air Defense lvl11</option>
+      <option value="3400">Clan Castle lvl6</option>
+      <option value="4000">Clan Castle lvl7</option>
+      <option value="4400">Clan Castle lvl8</option>
+      <option value="4800">Clan Castle lvl9</option>
+      <option value="4000">Eagle Artillery lvl1</option>
+      <option value="4400">Eagle Artillery lvl2</option>
+      <option value="4800">Eagle Artillery lvl3</option>
+      <option value="5200">Eagle Artillery lvl4</option>
+      <option value="1500">Inferno Tower lvl1</option>
+      <option value="1800">Inferno Tower lvl2</option>
+      <option value="2100">Inferno Tower lvl3</option>
+      <option value="2400">Inferno Tower lvl4</option>
+      <option value="2700">Inferno Tower lvl5</option>
+      <option value="3000">Inferno Tower lvl6</option>
+      <option value="3300">Inferno Tower lvl7</option>
+      <option value="3000">Scattershot lvl1</option>
+      <option value="3500">Scattershot lvl2</option>
+      <option value="1500">X-Bow lvl1</option>
+      <option value="1900">X-Bow lvl2</option>
+      <option value="2300">X-Bow lvl3</option>
+      <option value="2700">X-Bow lvl4</option>
+      <option value="3100">X-Bow lvl5</option>
+      <option value="3500">X-Bow lvl6</option>
+      <option value="3900">X-Bow lvl7</option>
+    </select>
+
+    <p id="result"></p>
+    <table border="1" id="table" hidden>
+    </table>
+  </div>
+  <div class="jwtg">
+    <h1>Jurassic multiplier</h1>
+    <hr>
+    <label for="attack">Insert attack stat:</label>
+    <input type="number" id="attack" placeholder="Press enter">
+    <br> <br>
+    <table border="1" id="multiplier" hidden>
+      <tr>
+        <th>X1</th>
+        <th>X2</th>
+        <th>X3</th>
+        <th>X4</th>
+        <th>X5</th>
+        <th>X6</th>
+        <th>X7</th>
+        <th>X8</th>
+      </tr>
+      <tr class="x">
+      </tr>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    //attack multiplier
+    var e = $("#attack")
+    var parent = $(".x")
+    e.change(function () {
+      parent.empty();
+      document.querySelector('#multiplier').hidden = false;
+      for (var i = 0; i < 8; i++) {
+        var x = document.createElement("td")
+        switch (i) {
+          case 0:
+            x.innerHTML = Math.floor(e.val() * 1)
+            parent.append(x)
+            break;
+          case 1:
+            x.innerHTML = Math.floor(e.val() * 2.4)
+            parent.append(x)
+            break;
+          case 2:
+            x.innerHTML = Math.floor(e.val() * 4.2)
+            parent.append(x)
+            break;
+          case 3:
+            x.innerHTML = Math.floor(e.val() * 6.4)
+            parent.append(x)
+            break;
+          case 4:
+            x.innerHTML = Math.floor(e.val() * 9)
+            parent.append(x)
+            break;
+          case 5:
+            x.innerHTML = Math.floor(e.val() * 12)
+            parent.append(x)
+            break;
+          case 6:
+            x.innerHTML = Math.floor(e.val() * 15.4)
+            parent.append(x)
+            break;
+          case 7:
+            x.innerHTML = Math.floor(e.val() * 20)
+            parent.append(x)
+            break;
+        }
+      }
+    })
+
+    function calc(c) {
+      var hp = parseFloat(c.value)
+      name = c.options[c.selectedIndex].text
+
+      var light = new Array(400, 480, 580)
+      var eq = new Array(0.17, 0.21, 0.25, 0.29)
+
+      document.querySelector('#table').hidden = false;
+      document.querySelector('#result').innerHTML = "<h2>Building: " + name + "</h2><hr>";
+      //cc = 1 - light
+
+
+      var tr = `<tr>
+                    <th colspan="2">Lightning Spell</th>
+                    <th colspan="2">Earthquake Spell</th>
+                  </tr>
+                  <tr>
+                    <th>Level</th>
+                    <th>Required</th>
+                    <th>Level</th>
+                    <th>Required</th>
+                  </tr>`;
+
+      for (i = 0; i < 3; i++) {
+        for (j = 0; j < 4; j++) {
+          if (hp * eq[j] > light[i]) {
+            ls = Math.floor((hp - hp * eq[j]) / light[i]);
+            l_lvl = i + 7;
+            e_lvl = j + 2;
+
+            tr = tr + `<tr><td>` + l_lvl + `</td>
+                    <td>x ` + ls + `</td>
+                    <td>` + e_lvl + `</td>
+                    <td bgcolor="green">x 1</td></tr>`;
+          } else {
+            ls = Math.floor(hp / light[i])
+            l_lvl = i + 7;
+            e_lvl = j + 2;
+
+            tr = tr + `<tr><td>` + l_lvl + `</td>
+                    <td>x ` + ls + `</td>
+                    <td>` + e_lvl + `</td>
+                    <td>x 0</td></tr>`;
+          }
+        }
+      }
+      document.querySelector('#table').innerHTML = tr;
+    }
+  </script>
+</body>
+
+</html>
