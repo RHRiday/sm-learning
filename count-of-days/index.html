@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days of month</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="card">
+            <h3 class="card-header text-center bg-info">Count total days in a period</h3>
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3 col-md-4 col-lg-3">
+                        <label for="startDate" class="form-label fw-bold">Starting date</label>
+                        <input type="date" class="form-control" id="startDate">
+                    </div>
+                    <div class="mb-3 col-md-4 col-lg-3">
+                        <label for="endDate" class="form-label fw-bold">Ending date</label>
+                        <input type="date" class="form-control" id="endDate">
+                    </div>
+                    <div class="mb-3 col-md-4 col-lg-3">
+                        <label class="form-label fw-bold">Days to count</label>
+                        <div class="d-flex flex-column">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="6" type="checkbox" id="Saturday">
+                                <label class="form-check-label" for="Saturday">Saturday</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="0" type="checkbox" id="Sunday">
+                                <label class="form-check-label" for="Sunday">Sunday</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="1" type="checkbox" id="Monday">
+                                <label class="form-check-label" for="Monday">Monday</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="2" type="checkbox" id="Tuesday">
+                                <label class="form-check-label" for="Tuesday">Tuesday</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="3" type="checkbox" id="Wednesday">
+                                <label class="form-check-label" for="Wednesday">Wednesday</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="4" type="checkbox" id="Thursday">
+                                <label class="form-check-label" for="Thursday">Thursday</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" value="5" type="checkbox" id="Friday">
+                                <label class="form-check-label" for="Friday">Friday</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3 col-lg-3">
+                        <div class="card">
+                            <div class="card-header fw-bold">
+                                Total days : <span id="totalDays">NaN</span>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">An item</li>
+                                <li class="list-group-item">A second item</li>
+                                <li class="list-group-item">A third item</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
