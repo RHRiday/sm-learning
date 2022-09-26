@@ -41,18 +41,16 @@
     <label>Choose a building:</label>
     <select id="defense" onchange="calc(this)">
       <option></option>
-      <option value="1210">Air Defense lvl8</option>
+      <option value="1200">Air Defense lvl8</option>
       <option value="1300">Air Defense lvl9</option>
       <option value="1400">Air Defense lvl10</option>
       <option value="1500">Air Defense lvl11</option>
-      <option value="3400">Clan Castle lvl6</option>
-      <option value="4000">Clan Castle lvl7</option>
-      <option value="4400">Clan Castle lvl8</option>
-      <option value="4800">Clan Castle lvl9</option>
+      <option value="1600">Air Defense lvl12</option>
       <option value="4000">Eagle Artillery lvl1</option>
       <option value="4400">Eagle Artillery lvl2</option>
       <option value="4800">Eagle Artillery lvl3</option>
       <option value="5200">Eagle Artillery lvl4</option>
+      <option value="5600">Eagle Artillery lvl5</option>
       <option value="1500">Inferno Tower lvl1</option>
       <option value="1800">Inferno Tower lvl2</option>
       <option value="2100">Inferno Tower lvl3</option>
@@ -60,8 +58,10 @@
       <option value="2700">Inferno Tower lvl5</option>
       <option value="3000">Inferno Tower lvl6</option>
       <option value="3300">Inferno Tower lvl7</option>
-      <option value="3000">Scattershot lvl1</option>
-      <option value="3500">Scattershot lvl2</option>
+      <option value="3700">Inferno Tower lvl8</option>
+      <option value="3600">Scattershot lvl1</option>
+      <option value="4200">Scattershot lvl2</option>
+      <option value="4800">Scattershot lvl3</option>
       <option value="1500">X-Bow lvl1</option>
       <option value="1900">X-Bow lvl2</option>
       <option value="2300">X-Bow lvl3</option>
@@ -69,6 +69,8 @@
       <option value="3100">X-Bow lvl5</option>
       <option value="3500">X-Bow lvl6</option>
       <option value="3900">X-Bow lvl7</option>
+      <option value="4200">X-Bow lvl8</option>
+      <option value="4500">X-Bow lvl9</option>
     </select>
 
     <p id="result"></p>
@@ -80,6 +82,7 @@
     <hr>
     <label for="attack">Insert attack stat:</label>
     <input type="number" id="attack" placeholder="Press enter">
+    <button onclick="multiply()">Enter</button>
     <br> <br>
     <table border="1" id="multiplier" hidden>
       <tr>
@@ -101,7 +104,9 @@
     //attack multiplier
     var e = $("#attack")
     var parent = $(".x")
-    e.change(function () {
+    e.change(multiply);
+      
+    function multiply() {
       parent.empty();
       document.querySelector('#multiplier').hidden = false;
       for (var i = 0; i < 8; i++) {
@@ -141,13 +146,13 @@
             break;
         }
       }
-    })
+    }
 
     function calc(c) {
       var hp = parseFloat(c.value)
       name = c.options[c.selectedIndex].text
 
-      var light = new Array(400, 480, 580)
+      var light = new Array(400, 480, 560)
       var eq = new Array(0.17, 0.21, 0.25, 0.29)
 
       document.querySelector('#table').hidden = false;
