@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A HTML IDE using jQuery and JavaScript">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- JS frameworks -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>DokkoCoder</title>
+</head>
+
+<body>
+    <div id="header">
+        <div id="logo">
+            DokkoCoder <span class="copyright">&copy; RHRiday</span>
+        </div>
+
+        <div id="buttonContainer">
+            <div class="toggleButton active" id="html">HTML</div>
+            <div class="toggleButton" id="css">CSS</div>
+            <div class="toggleButton" id="javascript">JavaScript</div>
+            <div class="toggleButton active" id="output">Output</div>
+        </div>
+    </div>
+
+    <div id="bodyContainer">
+
+        <textarea id="htmlPanel" class="panel"><!-- Open JS and CSS panel for more!! -->&#013; &#010;<p id="paragraph">Hello World!</p>&#013;<div id="container"></div>
+        </textarea>
+
+        <textarea id="cssPanel" class="panel hidden">p { color: green; }</textarea>
+
+        <textarea id="javascriptPanel" class="panel hidden">document.getElementById("container").innerHTML = "Jibon ta bedonar!";</textarea>
+        <iframe id="outputPanel" class="panel"></iframe>
+
+
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+</html>

@@ -1,57 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>RHRiday's Small Learning Curve</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="box">
-        <img src="img/match-cards.png" alt="Card Matching Game [fun]">
-        <a href="match-cards/index.html">Card Matching Game [fun]</a>
-      </div>
-      <div class="box">
-        <img src="img/match-mc.png" alt="Card Matching Game [elaka]">
-        <a href="match-mc/index.html">Card Matching Game [elaka]</a>
-      </div>
-      <div class="box">
-        <img src="img/roll-dice.png" alt="Dice Rolling Game">
-        <a href="roll-dice/index.html">Dice Rolling Game</a>
-      </div>
-      <div class="box">
-        <img src="img/rpsls.png" alt="Rock-Paper-Scissor-Lizard-Spock Game">
-        <a href="rpsls/index.html">Rock-Paper-Scissor-Lizard-Spock Game</a>
-      </div>
-      <div class="box">
-        <img src="img/countofdays.jpg" alt="Count of days">
-        <a href="count-of-days/index.html">Count of days</a>
-      </div>
-      <div class="box">
-        <img src="img/gameMech.png" alt="Game Mechanics">
-        <a href="gameMath/index.html">Game Mathematics</a>
-      </div>
-      <div class="box">
-        <img src="img/quiz-game.png" alt="Fun Quiz Game">
-        <a href="quiz-game/index.html">Fun Quiz Game</a>
-      </div>
-      <div class="box">
-        <img src="img/wallclock.png" alt="wall-clock">
-        <a href="wall-clock/index.html">Wall Clock</a>
-      </div>
-      <div class="box">
-        <img src="img/restaurant.png" alt="restaurant-page">
-        <a href="restaurant/index.html">Restaurant Landing Page</a>
-      </div>
-      <div class="box">
-        <img src="img/dog.jpg" alt="dog-rent">
-        <a href="TinDog/index.html">Dog Rent page</a>
-      </div>
-      <div class="box">
-        <img src="img/food.jpg" alt="omni-food">
-        <a href="Omnifood/index.html">Omnifood</a>
-      </div>
-    </div>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>RHRiday's Small Learning Curve</title>
+</head>
+
+<body>
+  <div class="container" id="main-container"></div>
+  <script>
+    function shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]
+        ];
+      }
+
+      return array;
+    }
+    var projects = [
+      {
+        img: 'dog.jpg',
+        alt: 'dog-rent',
+        href: 'TinDog',
+        title: 'Dog Rent page'
+      },
+      {
+        img: 'food.jpg',
+        alt: 'omni-food',
+        href: 'omnifood',
+        title: 'Omnifood'
+      },
+      {
+        img: 'restaurant.png',
+        alt: 'restaurant-page',
+        href: 'restaurant',
+        title: 'Restaurant Landing Page'
+      },
+      {
+        img: 'wallclock.png',
+        alt: 'wall-clock',
+        href: 'wall-clock',
+        title: 'Wall Clock'
+      },
+      {
+        img: 'quiz-game.png',
+        alt: 'quiz-game',
+        href: 'quiz-game',
+        title: 'Fun Quiz Game'
+      },
+      {
+        img: 'gameMech.png',
+        alt: 'Game Mathematics',
+        href: 'gameMath',
+        title: 'Game Mathematics'
+      },
+      {
+        img: 'countofdays.jpg',
+        alt: 'count-of-days',
+        href: 'count-of-days',
+        title: 'Count of days'
+      },
+      {
+        img: 'roll-dice.png',
+        alt: 'roll-dice',
+        href: 'roll-dice',
+        title: 'Dice Rolling Game'
+      },
+      {
+        img: 'match-mc.png',
+        alt: 'Card Matching Game [elaka]',
+        href: 'match-mc',
+        title: 'Card Matching Game [elaka]'
+      },
+      {
+        img: 'rpsls.png',
+        alt: 'Rock-Paper-Scissor-Lizard-Spock Game',
+        href: 'rpsls',
+        title: 'Rock-Paper-Scissor-Lizard-Spock Game'
+      },
+      {
+        img: 'match-cards.png',
+        alt: 'match-cards',
+        href: 'match-cards',
+        title: 'Card Matching Game [fun]'
+      }
+    ];
+
+    projects = shuffle(projects);
+    projects.forEach((p) => {
+      let a = document.createElement('a');
+      a.setAttribute('href', p.href + '/index.html');
+      a.textContent = p.title;
+      let i = document.createElement('img');
+      i.setAttribute('src', 'img/' + p.img);
+      i.setAttribute('alt', p.alt);
+      let d = document.createElement('div');
+      d.setAttribute('class', 'box');
+      d.append(i, a);
+      document.getElementById('main-container').append(d);
+    });
+  </script>
+</body>
+
 </html>
